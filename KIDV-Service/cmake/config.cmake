@@ -1,0 +1,1 @@
+hunter_config(Protobuf VERSION 3.10.0-p0)

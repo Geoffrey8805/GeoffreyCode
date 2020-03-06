@@ -1,0 +1,121 @@
+syntax = "proto3";
+import "google/protobuf/any.proto";
+package KIDV;
+
+message BaseMessage {
+  enum MsgType{  
+      UNDEFINE = 0;                   //未配置此类型  
+      CONFIG = 1;                     //配置信息
+      LOGIN = 2;                      //登录
+      TOOLBAR = 3;                    //工具栏消息
+      CHANGE_PASSWORD = 4;            //修改密码
+      REQUEST_VM_LIST = 5;            //请求虚拟机列表
+      VM_MANAGE = 6;                  //虚拟机操作消息
+      SNAPSHOOT_MANAGE =7;            //快照创建与管理
+      REMAIN_CLINET_LAUNCH = 8;       //其他client主动发起的消息
+      SERVER_LAUNCH = 9;              //server主动发送给client的消息
+  }
+  MsgType msgType = 1;                //消息类型，模块根据消息类型进行处理
+  google.protobuf.Any params = 2;     //嵌套的消息
+}
+
+message serverLauch{
+  enum MsgType{    
+    UNDEFINE = 0;                     //未配置此类型  
+    LOGIN_TYPE = 1;                   //登录方式
+    HINT = 2;        	              //提示消息	
+    VM_LIST = 3;                      //虚拟机列表
+    MSG_LIST = 4;                     //消息列表
+  }
+  MsgType msgType = 1;                //消息类型，模块根据消息类型进行处理
+  google.protobuf.Any params = 2;     //嵌套的消息
+}
+
+
+//******************************client发起的消息*********************************
+message Config {                 
+  string IP = 1;                 //ip地址
+  string port = 2;               //端口
+  bool isSave = 3;               //是否保存配置信息
+  int32  returnValue = 4;        //返回值
+}
+
+message Login {              
+  int32 loginMethod = 1;         //登录方式（1：密码;2：ukey;3：短信）
+  string userName = 2;           //用户名
+  string password = 3;           //密码
+  string result = 4;             //返回结果，如果验证通过则为同步的时间，如果不通过为空。
+}
+
+message Toolbar {                
+  int32 msgType = 1;             //消息类型（1：关机; 2：重启; 3：应急模式; 4：重置应急模式系统; 5：备份; 6：备份后关机; 7：请求快照信息）
+  string param = 2;              //备份进度
+  repeated snapshoot snapshootList = 3;  //快照信息数组
+  int32 returnValue = 4;         //返回值
+}
+
+message ChangePassword {
+  string userName = 1;           //用户名
+  string oldPassword = 2;        //旧密码
+  string newPassword = 3;        //新密码
+  string newPasswordTwo = 4;     //新密码确认
+  int32  changeResult = 5;       //修改结果（1：原密码错误;2：修改成功）
+}
+
+message VMManagge {
+  int32 uuid = 1;                //虚拟机唯一标识，uuid
+  string machineName = 2;        //虚拟机名称
+  int32 msgType = 3;             //操作类型（1：开机; 2：关机;3;修改虚拟机名称;4：下载镜像;5：备份）
+  int32 downloadProgress = 4;    //根据msgType值不同（4：下载进度;6：备份进度）
+  string newMachineName = 5;     //新的虚拟机名称（针对修改虚拟机名称的参数）
+}
+
+
+message snapshootManage {
+  int32  msgType = 1;            //消息类型（1：创建快照;2：删除快照; 3：恢复快照; 4：修改快照）
+  google.protobuf.Any params = 2;//嵌套的消息
+}
+
+message snapshoot{
+  string uuid = 1;               //对应的虚拟机uuid
+  int32 id = 2;                  //快照id
+  string snapshootName = 3;      //快照名称
+  string createTime = 4;         //创建快照的时间
+  string snapshootDescribe = 5;  //描述
+}
+
+message remainClientLaunch{
+  int32 msg = 1;                 //消息类型（1：退出系统)
+}
+//******************************server发起的消息*********************************
+message loginType{          
+  int32 logintype = 1;           //支持的登录方式（第一位：密码;第二位：ukey;第三位：验证码）
+}
+
+message Hint {                  
+  int32 hintMsgType = 1;         //提示消息类型（1:强提示;2：若提示）
+  string hintMsgContent = 2;     //提示消息内容
+  int32 strongHintType = 3;      //强提示消息类型（1：提供一种操作; 2：提供两种操作，确定和取消）
+  int32 param = 4;               //（1：确定; 2：取消）
+  int32 result = 5;              //强提示操作结果
+}
+
+message VmList{
+   repeated VmParam VmList = 1;
+}
+
+message VmParam {
+  string UUID = 1;              //虚拟机uuid
+  string name = 2;              //虚拟机名称
+  int32 VmState = 3;            //虚拟机状态（1：尚未下载镜像;2：下载中;3：下载完成）
+}
+
+message MsgList{
+  repeated msgContent msgList = 3;  //消息列表
+}
+
+message msgContent {                //消息内容
+  string msg = 1;
+}
+  
+//**************************************************************
