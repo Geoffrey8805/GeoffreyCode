@@ -24,10 +24,10 @@ project(KIDV-Service)
 # find_package(yaml-cpp CONFIG REQUIRED)
 
 # # google libs
-# hunter_add_package(glog)
-# find_package(glog CONFIG REQUIRED)
-# hunter_add_package(gflags)
-# find_package(gflags CONFIG REQUIRED)
+hunter_add_package(glog)
+find_package(glog CONFIG REQUIRED)
+hunter_add_package(gflags)
+find_package(gflags CONFIG REQUIRED)
 
 # # json
 # hunter_add_package(nlohmann_json)
@@ -50,12 +50,12 @@ find_package(Protobuf CONFIG REQUIRED)
 # set(Boost_USE_STATIC_LIBS ON)
 # set(Boost_USE_MULTITHREADED ON)
 # set(Boost_USE_STATIC_RUNTIME OFF)
-# find_package(Boost COMPONENTS system thread filesystem atomic program_options regex signals)
-# if(Boost_FOUND)
-#     message(STATUS "boost library found")
-# else()
-#     message(FATAL_ERROR "boost library is needed but cant be found")
-# endif()
+find_package(Boost COMPONENTS system thread filesystem atomic program_options regex signals)
+if(Boost_FOUND)
+    message(STATUS "boost library found")
+else()
+    message(FATAL_ERROR "boost library is needed but cant be found")
+endif()
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC -fpermissive")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fPIC -fpermissive")
@@ -103,10 +103,10 @@ add_subdirectory(protobuf)
 
 set(PROJECT_LIBS pthread 
 #${Boost_LIBRARIES} 
-                #caf_core_static
+                caf_core_static
                  # hunter libs
-                #  glog::glog
-                #  gflags
+                  glog::glog
+                  gflags
                 #  yaml-cpp::yaml-cpp
                  protocol
                 #  nlohmann_json::nlohmann_json

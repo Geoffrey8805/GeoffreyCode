@@ -11,8 +11,15 @@ behavior Master(stateful_actor<master> *self) {
     }
 
     return{
-        [=](init_atom at){
+        [=](cs_init_atom at)
+        {
 
-        }
+        },
+        [=](cs_connectMqtt_atom at, std::string& ip, std::string& port, bool saveFlag)
+        {
+            A_PRINT("cs_connectMqtt_atom" + ip + " " + port);
+            LOG(INFO) << saveFlag;
+        },
     };
+
 }

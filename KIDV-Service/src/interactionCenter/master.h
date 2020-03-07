@@ -15,9 +15,10 @@
 
 #include "base.h"
 boost::shared_ptr<actor> g_ptr_master_actor;
+
 struct master : Base {
     master(local_actor *selfptr) : Base(selfptr) {
-        S_PRINT("master_state");
+        S_PRINT("master");
     }
 
     ~master() {

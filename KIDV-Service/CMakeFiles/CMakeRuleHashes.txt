@@ -1,0 +1,2 @@
+# Hashes of file build rules.
+c08315bea6ebbbec9bfd2bd245ac5dff protobuf/protocol.pb.cc
