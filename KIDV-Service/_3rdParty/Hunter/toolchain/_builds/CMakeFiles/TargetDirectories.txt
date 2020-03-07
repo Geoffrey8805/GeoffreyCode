@@ -1,2 +1,0 @@
-/root/proj/GeoffreyCode/KIDV-Service/_3rdParty/Hunter/toolchain/_builds/CMakeFiles/rebuild_cache.dir
-/root/proj/GeoffreyCode/KIDV-Service/_3rdParty/Hunter/toolchain/_builds/CMakeFiles/edit_cache.dir

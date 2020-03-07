@@ -1,6 +1,0 @@
-/root/proj/GeoffreyCode/KIDV-Service/CMakeFiles/rebuild_cache.dir
-/root/proj/GeoffreyCode/KIDV-Service/CMakeFiles/edit_cache.dir
-/root/proj/GeoffreyCode/KIDV-Service/CMakeFiles/KIDV-Service.dir
-/root/proj/GeoffreyCode/KIDV-Service/protobuf/CMakeFiles/edit_cache.dir
-/root/proj/GeoffreyCode/KIDV-Service/protobuf/CMakeFiles/rebuild_cache.dir
-/root/proj/GeoffreyCode/KIDV-Service/protobuf/CMakeFiles/protocol.dir
