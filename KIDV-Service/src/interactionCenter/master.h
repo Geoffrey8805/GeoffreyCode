@@ -14,7 +14,8 @@
 #define _MASTER_H_
 
 #include "base.h"
-boost::shared_ptr<actor> g_ptr_master_actor;
+
+extern boost::shared_ptr<actor> g_ptr_master_actor;
 
 struct master : Base {
     master(local_actor *selfptr) : Base(selfptr) {

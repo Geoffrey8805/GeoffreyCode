@@ -26,7 +26,7 @@ using namespace caf;
 
 struct Base {
     Base(local_actor *thisptr) : self(thisptr) {
-        S_PRINT("base_state");
+        // S_PRINT("base");
     }
 
     virtual bool init(std::string m_name) {
