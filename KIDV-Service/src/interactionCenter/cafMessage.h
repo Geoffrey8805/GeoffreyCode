@@ -39,7 +39,16 @@ using cs_terminalReboot_atom = caf::atom_constant<caf::atom("treboot")>;
 using cs_emergency_atom = caf::atom_constant<caf::atom("emergency")>;
 
 /**************虚拟机的备份与下载*************************/
-using cs_init_atom = caf::atom_constant<caf::atom("init")>;
+using cs_download_atom = caf::atom_constant<caf::atom("download")>;
+using cs_upload_atom = caf::atom_constant<caf::atom("upload")>; 
+
+
+
+/*****************IDV Server to KIDV-Service***********/
+using ss_vmReboot_atom = caf::atom_constant<caf::atom("vreboot")>; 
+using ss_vmShutdown_atom = caf::atom_constant<caf::atom("vshutdown")>; 
+
+
 
 
 
