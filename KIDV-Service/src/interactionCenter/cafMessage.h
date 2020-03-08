@@ -47,7 +47,7 @@ using cs_upload_atom = caf::atom_constant<caf::atom("upload")>;
 /*****************IDV Server to KIDV-Service***********/
 using ss_vmReboot_atom = caf::atom_constant<caf::atom("vreboot")>; 
 using ss_vmShutdown_atom = caf::atom_constant<caf::atom("vshutdown")>; 
-
+using ss_reduction_atom = caf::atom_constant<caf::atom("reduction")>;
 
 
 
